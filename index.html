@@ -3,70 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DOGS OFFICIAL MINER</title>
+    <title>DOGS EARN BOT - MINI APP</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://ad.gigapub.tech/script?id=1096"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { background: #000; color: #fff; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
         
-        /* Header Section */
+        /* Header */
         .header { padding: 20px; background: linear-gradient(180deg, #1a1a1a 0%, #000 100%); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; }
         .user-info { display: flex; align-items: center; gap: 10px; }
         .user-info img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #fff; }
-        .user-details b { font-size: 14px; display: block; }
-        .user-details span { font-size: 10px; color: #888; }
-        .main-bal { text-align: right; }
-        .main-bal h2 { color: #fff; font-size: 24px; }
+        .main-bal h2 { color: #fff; font-size: 24px; text-align: right; }
 
         .container { padding: 15px; padding-bottom: 100px; }
         .card { background: #111; border: 1px solid #222; border-radius: 20px; padding: 15px; margin-bottom: 15px; }
         
         /* Task Grid */
         .task-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .task-box { background: #1a1a1a; padding: 15px; border-radius: 15px; text-align: center; cursor: pointer; border: 1px solid #333; }
+        .task-box { background: #1a1a1a; padding: 15px; border-radius: 15px; text-align: center; cursor: pointer; border: 1px solid #333; transition: 0.2s; }
         .task-box:active { transform: scale(0.95); }
-        .task-box i { font-size: 24px; display: block; margin-bottom: 5px; }
+        .task-box b { font-size: 14px; display: block; margin-top: 5px; }
 
-        /* Referral & Withdraw List */
-        .list-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #222; font-size: 13px; }
-        .list-item span { color: #888; }
-        .list-item b { color: #00ff88; }
-
-        /* Dashboard Stats */
+        /* Dashboard */
         .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .stat-box { background: #0a0a0a; padding: 12px; border-radius: 12px; border-left: 3px solid #fff; }
-        .stat-box small { font-size: 10px; color: #888; }
 
-        /* Fake Withdraw Animation */
-        #fake-notif { position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%); background: #fff; color: #000; padding: 10px 20px; border-radius: 50px; font-size: 12px; font-weight: bold; display: none; z-index: 2000; box-shadow: 0 0 20px rgba(255,255,255,0.3); }
+        /* Fake Notification */
+        #fake-notif { position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%); background: #fff; color: #000; padding: 10px 20px; border-radius: 50px; font-size: 12px; font-weight: bold; display: none; z-index: 2000; }
 
         .btn-pay { width: 100%; padding: 15px; background: #fff; color: #000; border: none; border-radius: 12px; font-weight: bold; margin-top: 10px; cursor: pointer; }
-        .input-box { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #fff; border-radius: 10px; margin-bottom: 10px; outline: none; }
+        .input-box { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #fff; border-radius: 10px; margin-bottom: 10px; text-align: center; outline: none; }
 
         /* Bottom Nav */
-        .nav { position: fixed; bottom: 0; width: 100%; height: 70px; background: #0a0a0a; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #222; }
+        .nav { position: fixed; bottom: 0; width: 100%; height: 70px; background: #0a0a0a; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #222; z-index: 1000; }
         .nav-item { text-align: center; color: #555; cursor: pointer; font-size: 12px; }
         .nav-item.active { color: #fff; }
-        .nav-item i { font-size: 20px; display: block; }
 
         .hide { display: none; }
     </style>
 </head>
 <body>
-
-    <div class="header">
-        <div class="user-info">
-            <img id="u_pic" src="https://i.imgur.com/8Km9tLL.png">
-            <div class="user-details">
-                <b id="u_name">Loading...</b>
-                <span id="u_id">ID: 000000</span>
-            </div>
-        </div>
-        <div class="main-bal">
-            <h2 id="top_bal">0</h2>
-            <span style="font-size: 10px; color: #888;">$DOGS BALANCE</span>
-        </div>
-    </div>
 
     <div style="text-align:center; padding: 10px 0;">
         <script>
@@ -75,84 +52,89 @@
         <script src="https://www.highperformanceformat.com/a91e4f498fbc72981defd7cee9f2e9bc/invoke.js"></script>
     </div>
 
+    <div class="header">
+        <div class="user-info">
+            <img id="u_pic" src="https://i.imgur.com/8Km9tLL.png">
+            <div class="user-details">
+                <b id="u_name">Miner</b>
+                <span id="u_id" style="font-size: 10px; color:#888;">ID: 000000</span>
+            </div>
+        </div>
+        <div class="main-bal">
+            <h2 id="top_bal">0</h2>
+            <span style="font-size: 10px; color: #888;">$DOGS BALANCE</span>
+        </div>
+    </div>
+
     <div class="container">
         
         <div id="section-home">
-            <div class="card" style="background: linear-gradient(45deg, #111, #222); border: 1px solid #fff;">
-                <h3>Total Users: 5,646+</h3>
-                <p style="font-size: 12px; color: #888;">Mining is active for all official holders.</p>
+            <div class="card" style="border: 1px solid #fff; text-align: center;">
+                <h3 style="color:#00ff88;">Total Users: 5,646+</h3>
+                <p style="font-size: 11px;">Join the fastest growing DOGS miner!</p>
             </div>
 
             <div class="task-grid">
-                <div class="task-box" onclick="watchAd()"><i>📺</i>Watch Ad<br><small style="color:#00ff88;">+5 DOGS</small></div>
-                <div class="task-box" onclick="claimDaily()"><i>🎁</i>Daily Bonus<br><small style="color:#00ff88;">5 DOGS</small></div>
-                <div class="task-box" onclick="spinEarn()"><i>🎡</i>Spin & Win<br><small style="color:#00ff88;">Random</small></div>
-                <div class="task-box" onclick="window.open('https://t.me/JUST_GOPAL')"><i>📢</i>Official Channel<br><small style="color:#00ff88;">Join Now</small></div>
+                <div class="task-box" onclick="watchAd()"><span>📺</span><b>Watch & Earn</b><small style="color:#00ff88;">+5 DOGS</small></div>
+                <div class="task-box" onclick="claimDaily()"><span>🎁</span><b>Daily Bonus</b><small style="color:#00ff88;">+5 DOGS</small></div>
+                <div class="task-box" onclick="spinWin()"><span>🎡</span><b>Lucky Spin</b><small style="color:#00ff88;">Random</small></div>
+                <div class="task-box" onclick="window.open('https://t.me/Dogs_coinearn_bot')"><span>📢</span><b>Channel</b><small style="color:#00ff88;">Join Now</small></div>
             </div>
 
             <div class="card" style="margin-top:20px;">
-                <h4 style="margin-bottom:10px;">Referral List</h4>
-                <div id="refer-list">
-                    <div class="list-item"><span>User @alex_99</span> <b>+450 DOGS</b></div>
-                    <div class="list-item"><span>User @crypto_king</span> <b>+1,200 DOGS</b></div>
-                    <div class="list-item"><span>User @mhd_rifat</span> <b>+50 DOGS</b></div>
-                </div>
-                <button class="btn-pay" style="background:#0088cc; color:#fff;" onclick="inviteFriend()">Invite Friend (+50 DOGS)</button>
+                <h4>Referral Program</h4>
+                <p style="font-size: 12px; color:#888; margin-bottom:10px;">Get 50 DOGS per valid referral.</p>
+                <button class="btn-pay" style="background:#0088cc; color:#fff;" onclick="invite()">Invite Friends</button>
             </div>
         </div>
 
         <div id="section-withdraw" class="hide">
             <div class="card">
-                <h3>Withdraw DOGS</h3>
-                <p style="font-size: 12px; color: #888; margin-bottom: 15px;">Transfer to your DOGS/TON Wallet</p>
-                <input type="number" id="w_amt" class="input-box" placeholder="Amount (Min 5,000)">
+                <h3>Withdrawal Center</h3>
+                <p style="font-size: 12px; color: #888; margin-bottom: 15px;">Minimum: 10,000 DOGS</p>
+                <input type="number" id="w_amt" class="input-box" placeholder="Amount (Min 10000)">
                 <input type="text" id="w_addr" class="input-box" placeholder="Enter DOGS Address">
-                <button class="btn-pay" onclick="requestWithdraw()">Withdraw Now</button>
+                <button class="btn-pay" onclick="requestWithdraw()">Submit Request</button>
             </div>
         </div>
 
         <div id="section-profile" class="hide">
             <div class="card stat-grid">
-                <div class="stat-box"><small>Total Income</small><br><b id="st_inc">0</b></div>
-                <div class="stat-box"><small>Total Refer</small><br><b id="st_ref">0</b></div>
-                <div class="stat-box"><small>Withdrawals</small><br><b>0.00</b></div>
-                <div class="stat-box"><small>User Status</small><br><b style="color:#00ff88;">Active</b></div>
+                <div class="stat-box"><small>Balance</small><br><b id="st_bal">0</b></div>
+                <div class="stat-box"><small>Refers</small><br><b id="st_ref">0</b></div>
+                <div class="stat-box"><small>Status</small><br><b style="color:#00ff88;">Verified</b></div>
+                <div class="stat-box"><small>Server</small><br><b>Cloud V3</b></div>
             </div>
-            <div class="card">
-                <h4>Mining Dashboard</h4>
-                <p style="font-size: 13px; margin: 10px 0;">Your cloud mining is running on our secure servers.</p>
-                <button class="btn-pay" style="background: #222; color: #fff;">Cloud Mining: ON</button>
-            </div>
+            <button class="btn-pay" style="background:#222; color:#fff;" onclick="alert('Mining is running in background...')">Cloud Mining: ACTIVE</button>
         </div>
-
     </div>
 
-    <div id="fake-notif">User ID 582*** just withdrew 12,500 DOGS! ✅</div>
+    <div id="fake-notif">User just withdrew 12,000 DOGS! ✅</div>
 
     <div class="nav">
-        <div class="nav-item active" onclick="nav('home', this)"><i>🏠</i>Home</div>
-        <div class="nav-item" onclick="nav('withdraw', this)"><i>💳</i>Withdraw</div>
-        <div class="nav-item" onclick="nav('profile', this)"><i>👤</i>Profile</div>
+        <div class="nav-item active" onclick="nav('home', this)">Home</div>
+        <div class="nav-item" onclick="nav('withdraw', this)">Withdraw</div>
+        <div class="nav-item" onclick="nav('profile', this)">Profile</div>
     </div>
-
-    <script src="https://ad.gigapub.tech/script?id=1096"></script>
 
     <script>
         const tg = window.Telegram.WebApp;
         tg.ready(); tg.expand();
 
-        let userData = tg.initDataUnsafe.user || { first_name: "User", id: "000000" };
-        document.getElementById('u_name').innerText = userData.first_name;
-        document.getElementById('u_id').innerText = "ID: " + userData.id;
-        if(userData.photo_url) document.getElementById('u_pic').src = userData.photo_url;
+        const BOT_TOKEN = "8032434831:AAE_Tz0v_3Ze9yfm8M2xi2tVWwnzD_4C4yA";
+        const ADMIN_ID = "6045231271";
 
-        let db = JSON.parse(localStorage.getItem("dogs_final_v1")) || { bal: 0, ref: 0, lastClaim: "" };
+        let user = tg.initDataUnsafe.user || { first_name: "Miner", id: "000000" };
+        document.getElementById('u_name').innerText = user.first_name;
+        document.getElementById('u_id').innerText = "ID: " + user.id;
+        if(user.photo_url) document.getElementById('u_pic').src = user.photo_url;
+
+        let db = JSON.parse(localStorage.getItem("dogs_db_final")) || { bal: 0, ref: 0, lastBonus: "" };
 
         function update() {
-            document.getElementById('top_bal').innerText = Math.floor(db.bal).toLocaleString();
-            document.getElementById('st_inc').innerText = Math.floor(db.bal);
+            document.getElementById('top_bal').innerText = document.getElementById('st_bal').innerText = Math.floor(db.bal).toLocaleString();
             document.getElementById('st_ref').innerText = db.ref;
-            localStorage.setItem("dogs_final_v1", JSON.stringify(db));
+            localStorage.setItem("dogs_db_final", JSON.stringify(db));
         }
         update();
 
@@ -164,60 +146,58 @@
         }
 
         function watchAd() {
-            // Gigapub Reward Ad
             if (typeof showGiga === 'function') {
-                showGiga().then(() => {
-                    db.bal += 5; update();
-                    alert("Success! 5 DOGS added.");
-                });
-            } else {
-                db.bal += 5; update(); alert("Ad Simulated: +5 DOGS");
-            }
+                showGiga().then(() => { db.bal += 5; update(); alert("5 DOGS Earned!"); });
+            } else { db.bal += 5; update(); alert("Ad Simulated: +5 DOGS"); }
         }
 
         function claimDaily() {
             let today = new Date().toDateString();
-            if(db.lastClaim === today) return alert("Come back tomorrow!");
-            db.bal += 5; db.lastClaim = today; update();
-            alert("Daily Bonus 5 DOGS Claimed!");
+            if(db.lastBonus === today) return alert("Already claimed today!");
+            db.bal += 5; db.lastBonus = today; update();
+            alert("Daily Bonus Claimed!");
         }
 
-        function spinEarn() {
+        function spinWin() {
             watchAd();
             let win = Math.floor(Math.random() * 10);
             db.bal += win; update();
-            alert("You won " + win + " DOGS from Spin!");
+            alert("You won " + win + " DOGS!");
         }
 
-        function inviteFriend() {
-            const url = `https://t.me/your_bot_name?start=${userData.id}`;
-            tg.openTelegramLink(`https://t.me/share/url?url=${url}&text=Mine DOGS now!`);
+        function invite() {
+            const url = `https://t.me/Dogs_coinearn_bot?start=${user.id}`;
+            tg.openTelegramLink(`https://t.me/share/url?url=${url}&text=Start Mining DOGS!`);
         }
 
         function requestWithdraw() {
-            let a = document.getElementById('w_amt').value;
-            if(a >= 5000 && db.bal >= a) {
-                db.bal -= a; update();
-                alert("Withdrawal submitted successfully!");
+            let amt = document.getElementById('w_amt').value;
+            let addr = document.getElementById('w_addr').value;
+
+            if(amt >= 10000 && db.bal >= amt && addr.length > 5) {
+                let text = `🚀 **NEW WITHDRAW REQUEST**\n\n👤 Name: ${user.first_name}\n🆔 ID: ${user.id}\n💰 Amount: ${amt} DOGS\n📍 Address: \`${addr}\``;
+                
+                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: ADMIN_ID, text: text, parse_mode: 'Markdown' })
+                }).then(() => {
+                    db.bal -= amt; update();
+                    alert("Withdrawal submitted! Wait 24h.");
+                });
             } else {
-                alert("Min withdraw 5,000 DOGS!");
+                alert("Minimum 10,000 DOGS and valid address required!");
             }
         }
 
-        // Fake Withdrawal Animation Logic
-        function showFake() {
+        // Fake Notification
+        setInterval(() => {
             const notif = document.getElementById('fake-notif');
-            const amounts = [5000, 12000, 8500, 25000, 7200];
-            const randAmt = amounts[Math.floor(Math.random()*amounts.length)];
-            const randId = Math.floor(Math.random() * 900) + 100;
-            
-            notif.innerText = `User ID ${randId}*** just withdrew ${randAmt.toLocaleString()} DOGS! ✅`;
+            const ams = [12000, 15000, 20000, 80000];
+            notif.innerText = `User ID ${Math.floor(Math.random()*900)+100}*** withdrew ${ams[Math.floor(Math.random()*ams.length)]} DOGS! ✅`;
             notif.style.display = 'block';
-            
-            setTimeout(() => { notif.style.display = 'none'; }, 4000);
-        }
-        setInterval(showFake, 15000); // প্রতি ১৫ সেকেন্ডে একটি ফেইক নোটিফিকেশন
-
+            setTimeout(() => notif.style.display = 'none', 3000);
+        }, 20000);
     </script>
 </body>
 </html>
