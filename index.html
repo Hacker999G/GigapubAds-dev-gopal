@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CASH DHORO PREMIUM</title>
+<title>DOGS MINER PRO</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="https://ad.gigapub.tech/script?id=1096"></script>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family: 'Hind Siliguri', sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;font-family: 'Segoe UI', Tahoma, sans-serif;}
 
 body{
   background:#050814; color:#fff; overflow-x:hidden;
@@ -25,7 +24,6 @@ body{
   padding:20px; margin-bottom:16px; position:relative;
 }
 
-/* আর্নিং কার্ড এনিমেশন */
 .premium-gradient{ 
   background: linear-gradient(135deg,#6f6dff,#00d2ff); color:#fff; 
   box-shadow: 0 10px 20px rgba(0,0,0,0.3);
@@ -39,22 +37,25 @@ body{
 }
 .btn-premium:active{transform:scale(0.96)}
 
-/* মেথড কার্ড ফিক্স */
+/* Mining Button */
+.mining-circle {
+    width: 160px; height: 160px; border-radius: 50%;
+    background: radial-gradient(circle, #fff 0%, #aaa 100%);
+    margin: 20px auto; display: flex; align-items: center;
+    justify-content: center; font-size: 80px;
+    box-shadow: 0 0 30px rgba(255,255,255,0.2);
+    cursor: pointer; transition: 0.1s;
+}
+.mining-circle:active { transform: scale(0.9); }
+
 .method-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0; }
 .method-card{
   background: rgba(255,255,255,0.05); border: 2px solid transparent;
   border-radius: 20px; padding: 15px; text-align: center; cursor: pointer;
-  transition: 0.3s; position: relative;
+  transition: 0.3s;
 }
-.method-card img{ width: 65px; height: 65px; border-radius: 15px; margin-bottom: 8px; object-fit: cover;}
-.method-card.active{
-  border-color: #00d2ff; background: rgba(0, 210, 255, 0.1);
-}
-.method-card.active::after {
-  content: '✓'; position: absolute; top: 10px; right: 10px;
-  background: #00d2ff; color: #000; width: 22px; height: 22px;
-  border-radius: 50%; font-size: 14px; line-height: 22px; font-weight: bold;
-}
+.method-card img{ width: 50px; height: 50px; border-radius: 10px; margin-bottom: 8px;}
+.method-card.active{ border-color: #00d2ff; background: rgba(0, 210, 255, 0.1); }
 
 .input-box{
   width:100%; padding:16px; margin-top:12px; border-radius:15px;
@@ -68,121 +69,101 @@ body{
   border-radius:25px; display:flex; align-items:center; justify-content:space-around;
   border:1px solid rgba(255,255,255,0.1); z-index:1000;
 }
-.nav button{ background:none; border:none; color:#777; font-size:24px; transition:0.3s; width:55px; height:55px; border-radius:18px; }
-.nav button.active{ color:#fff; background:linear-gradient(135deg,#6f6dff,#00d2ff); transform:translateY(-8px); box-shadow: 0 5px 15px rgba(111,109,255,0.4); }
+.nav button{ background:none; border:none; color:#777; font-size:24px; width:55px; height:55px; }
+.nav button.active{ color:#fff; background:linear-gradient(135deg,#6f6dff,#00d2ff); border-radius:18px; }
 
 .hide{display:none}
 </style>
 </head>
 <body>
 
-<div style="padding:20px; display:flex; justify-content:space-between; align-items:center;">
+<div style="display:flex; justify-content:center; padding:10px 0;">
+    <script>
+      atOptions = { 'key' : 'a91e4f498fbc72981defd7cee9f2e9bc', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+    </script>
+    <script src="https://www.highperformanceformat.com/a91e4f498fbc72981defd7cee9f2e9bc/invoke.js"></script>
+</div>
+
+<div style="padding:10px 20px; display:flex; justify-content:space-between; align-items:center;">
   <div style="display:flex; align-items:center; gap:12px;">
-    <img id="photo" style="width:48px; height:48px; border-radius:50%; border:2px solid #6f6dff; object-fit: cover;">
+    <img id="photo" style="width:40px; height:40px; border-radius:50%; border:2px solid #6f6dff;">
     <div>
-      <p style="font-size:11px; color:#aaa; text-transform:uppercase;">Welcome</p>
-      <b id="name" style="font-size:16px;">User</b>
+      <p style="font-size:10px; color:#aaa;">MINER ID</p>
+      <b id="name" style="font-size:14px;">User</b>
     </div>
   </div>
-  <div style="background:rgba(111,109,255,0.15); padding:10px 18px; border-radius:18px; border:1px solid rgba(111,109,255,0.3);">
-    <span style="color:#00d2ff; font-weight:800; font-size:18px;">৳ <span id="balance">0</span></span>
+  <div style="background:rgba(255,255,255,0.1); padding:8px 15px; border-radius:15px;">
+    <span style="color:#00d2ff; font-weight:800;">🦴 <span id="balance">0</span> DOGS</span>
   </div>
 </div>
 
 <div class="container">
 
   <div id="home">
-    <div class="card premium-gradient">
-      <h2 style="font-size:22px;">৳ ১০,০০০ বোনাস জিতুন!</h2>
-      <p style="opacity:0.9; font-size:14px; margin: 8px 0 15px;">প্রতি রেফারে পাবেন ২০৳ নিশ্চিত বোনাস। যত বেশি রেফার, তত বেশি আয়!</p>
-      <button class="btn-premium" style="background:#050814; font-size:15px; padding:12px;" onclick="nav('earn')">কাজ শুরু করুন ⚡</button>
+    <div class="card premium-gradient" style="text-align:center;">
+      <h2 style="font-size:20px;">DOGS MINING CENTER</h2>
+      <p style="font-size:13px; margin: 10px 0;">Tap the dog to mine. Max 10 DOGS daily!</p>
+      
+      <div class="mining-circle" id="mining-btn" onclick="mineDogs()">🐶</div>
+      <p id="mine-stat" style="font-size:12px; color:#fff;">Daily Limit: <span id="today_mine">0</span>/10</p>
     </div>
     
-    <div style="display:flex; gap:12px; margin-top:5px;">
+    <div style="display:flex; gap:12px;">
         <div class="card" style="flex:1; text-align:center;">
-            <small style="color:#aaa;">আজকের টাস্ক</small><br><b style="color:#00d2ff; font-size:20px;"><span id="today_ads">0</span></b>
+            <small style="color:#aaa;">Ads Watched</small><br><b id="ads_count">0</b>
         </div>
         <div class="card" style="flex:1; text-align:center;">
-            <small style="color:#aaa;">মোট রেফার</small><br><b style="color:#6f6dff; font-size:20px;"><span id="total_ref">0</span></b>
+            <small style="color:#aaa;">Daily Bonus</small><br><b id="bonus_stat">Available</b>
         </div>
     </div>
   </div>
 
   <div id="earn" class="hide">
-    <div class="card" style="text-align:center; border: 1px solid #6f6dff;">
-        <h3 style="color:#00d2ff;">ডেইলি রিওয়ার্ড</h3>
-        <p style="font-size:13px; color:#aaa; margin:5px 0 15px;">প্রতিদিন একবার ১০৳ ফ্রি বোনাস সংগ্রহ করুন</p>
-        <button class="btn-premium" onclick="claimBonus()">Claim 10৳ 🎁</button>
+    <div class="card" style="text-align:center;">
+        <h3>Daily Check-in</h3>
+        <p style="font-size:12px; color:#aaa; margin-bottom:15px;">Get 5 DOGS every day</p>
+        <button class="btn-premium" onclick="claimDaily()">Claim 5 DOGS 🎁</button>
     </div>
     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-        <div class="card" style="text-align:center; margin-bottom:0;" onclick="watchAd()">
-            <div style="font-size:35px; margin-bottom:10px;">📺</div>
-            <b>অ্যাড দেখুন</b>
-            <p style="font-size:12px; color:#00d2ff;">৳ ১০.০০</p>
+        <div class="card" style="text-align:center;" onclick="watchVideoAd()">
+            <div style="font-size:30px;">📺</div>
+            <b>Watch Ad</b>
+            <p style="color:#00d2ff;">+1 DOGS</p>
         </div>
-        <div class="card" style="text-align:center; margin-bottom:0;" onclick="startSpin()">
-            <div style="font-size:35px; margin-bottom:10px;">🎡</div>
-            <b>লাকি স্পিন</b>
-            <p style="font-size:12px; color:#00d2ff;">৫০৳ পর্যন্ত</p>
+        <div class="card" style="text-align:center;" onclick="luckySpin()">
+            <div style="font-size:30px;">🎡</div>
+            <b>Spin Win</b>
+            <p style="color:#00d2ff;">Up to 5 DOGS</p>
         </div>
     </div>
   </div>
 
   <div id="withdraw" class="hide">
       <div class="card">
-          <h3 style="text-align:center; margin-bottom:15px;">টাকা উত্তোলন করুন</h3>
-          <div style="text-align:center; background:rgba(0, 210, 255, 0.1); padding:20px; border-radius:20px; margin-bottom:20px;">
-              <small style="color:#aaa;">উত্তোলনযোগ্য ব্যালেন্স</small>
-              <h1 style="font-size:35px; color:#00d2ff;">৳ <span id="wb">0</span></h1>
-          </div>
-
-          <p style="font-weight:bold; margin-bottom:10px;">পেমেন্ট মেথড বেছে নিন:</p>
+          <h3 style="text-align:center; margin-bottom:15px;">Withdraw DOGS</h3>
           <div class="method-grid">
-              <div class="method-card active" onclick="selectMethod(this, 'Bkash')">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVLT6KNHl8DHka057ooujUJPUCm1P2jyBHsdXV2UvEvTZVb6u6bEG2NX4&s">
-                  <b>বিকাশ</b>
+              <div class="method-card active" onclick="selectM(this,'Bkash')">
+                  <img src="https://i.imgur.com/7SstD2D.png" style="width:40px;"><b>Bkash</b>
               </div>
-              <div class="method-card" onclick="selectMethod(this, 'Nagad')">
-                  <img src="https://bit.ly/4pioKCr">
-                  <b>নগদ</b>
+              <div class="method-card" onclick="selectM(this,'Nagad')">
+                  <img src="https://i.imgur.com/Wl3Yy6H.png" style="width:40px;"><b>Nagad</b>
               </div>
           </div>
-
-          <input type="number" id="amt" class="input-box" placeholder="টাকার পরিমাণ (মিনিমাম ৫০০৳)">
-          <input type="text" id="num" class="input-box" placeholder="আপনার ওয়ালেট নম্বর">
-          <button class="btn-premium" style="margin-top:25px;" onclick="reqW()">উত্তোলন রিকোয়েস্ট দিন 💸</button>
+          <input type="number" id="amt" class="input-box" placeholder="Enter Amount (Min 1000 DOGS)">
+          <input type="text" id="address" class="input-box" placeholder="Enter Bkash/Dogs Address">
+          <button class="btn-premium" style="margin-top:20px;" onclick="processWithdraw()">Withdraw Now 💸</button>
       </div>
   </div>
 
   <div id="profile" class="hide">
     <div class="card" style="text-align:center;">
-        <img id="p_photo" style="width:90px; height:90px; border-radius:50%; border:3px solid #6f6dff; margin-bottom:10px;">
         <h3 id="p_name">User</h3>
-        <p style="color:#aaa; font-size:13px;">Telegram ID: <span id="uid">---</span></p>
-        <div style="display:flex; gap:10px; margin-top:20px;">
-            <div style="flex:1; background:rgba(255,255,255,0.05); padding:12px; border-radius:15px;">
-                <small>মোট আয়</small><br><b style="color:#00d2ff;">৳ <span id="total_inc">0</span></b>
-            </div>
-            <div style="flex:1; background:rgba(255,255,255,0.05); padding:12px; border-radius:15px;">
-                <small>টাস্ক</small><br><b style="color:#6f6dff;"><span id="total_ads">0</span></b>
-            </div>
+        <p id="uid" style="color:#aaa; font-size:12px;">ID: ---</p>
+        <div style="margin-top:20px; background:rgba(255,255,255,0.05); padding:15px; border-radius:15px;">
+            <p>Total Mined: <b id="total_mined">0</b> DOGS</p>
         </div>
     </div>
-    <div class="card">
-        <h3 style="margin-bottom:15px; color:#00d2ff; font-size:16px;">🏆 সেরা উপার্জনকারী (লিডারবোর্ড)</h3>
-        <div style="font-size:14px;">
-            <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
-                <span>১. মেহেদী হাসান</span> <b style="color:#00d2ff;">৳ ৫২,৪০০</b>
-            </div>
-            <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
-                <span>২. রাকিব আহমেদ</span> <b style="color:#00d2ff;">৳ ৪৭,১০০</b>
-            </div>
-            <div style="display:flex; justify-content:space-between; padding:10px 0;">
-                <span>৩. সুমন আলী</span> <b style="color:#00d2ff;">৳ ৪১,৮০০</b>
-            </div>
-        </div>
-    </div>
-    <button class="btn-premium" style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2);" onclick="openDev()">বট ডেভেলপারের সাথে যোগাযোগ করুন</button>
+    <button class="btn-premium" style="background:#222;" onclick="window.open('https://t.me/JUST_GOPAL')">Contact Support</button>
   </div>
 
 </div>
@@ -196,25 +177,42 @@ body{
 
 <script>
 const tg = window.Telegram.WebApp;
-tg.ready();
-tg.expand();
+tg.ready(); tg.expand();
 
-const user = tg.initDataUnsafe.user || {};
-document.getElementById('photo').src = document.getElementById('p_photo').src = user.photo_url || "https://i.imgur.com/8Km9tLL.png";
-document.getElementById('name').innerText = document.getElementById('p_name').innerText = user.first_name || "User";
-document.getElementById('uid').innerText = user.id || "N/A";
+// Initial Ad Trigger
+window.onload = function() {
+    if(typeof showGiga === 'function') showGiga();
+};
 
-let data = JSON.parse(localStorage.getItem("cash_dhoro_pro_v3")) || { bal: 0, ads: 0, ref: 0, lastBonus: "" };
-let selectedMth = "Bkash";
+let user = tg.initDataUnsafe.user || { first_name: "Miner", id: "000" };
+document.getElementById('name').innerText = user.first_name;
+document.getElementById('uid').innerText = "ID: " + user.id;
+document.getElementById('photo').src = user.photo_url || "https://i.imgur.com/8Km9tLL.png";
 
-function update() {
-  document.getElementById('balance').innerText = document.getElementById('wb').innerText = data.bal;
-  document.getElementById('total_inc').innerText = data.bal;
-  document.getElementById('total_ads').innerText = document.getElementById('today_ads').innerText = data.ads;
-  document.getElementById('total_ref').innerText = data.ref;
-  localStorage.setItem("cash_dhoro_pro_v3", JSON.stringify(data));
+let db = JSON.parse(localStorage.getItem("dogs_miner_db")) || { 
+    bal: 0, 
+    ads: 0, 
+    todayMine: 0, 
+    lastDate: "", 
+    lastBonus: "" 
+};
+
+function save() {
+    localStorage.setItem("dogs_miner_db", JSON.stringify(db));
+    document.getElementById('balance').innerText = Math.floor(db.bal);
+    document.getElementById('ads_count').innerText = db.ads;
+    document.getElementById('today_mine').innerText = db.todayMine;
+    document.getElementById('total_mined').innerText = Math.floor(db.bal);
 }
-update();
+save();
+
+// Reset Daily Mine
+let today = new Date().toDateString();
+if(db.lastDate !== today) {
+    db.todayMine = 0;
+    db.lastDate = today;
+    save();
+}
 
 function nav(id) {
   document.querySelectorAll(".container > div").forEach(d => d.classList.add("hide"));
@@ -223,55 +221,63 @@ function nav(id) {
   document.getElementById('n-' + id).classList.add("active");
 }
 
-function selectMethod(el, m) {
+function mineDogs() {
+    if(db.todayMine < 10) {
+        db.bal += 0.5;
+        db.todayMine += 0.5;
+        save();
+    } else {
+        alert("Daily mining limit reached (10 DOGS)!");
+    }
+}
+
+function watchVideoAd() {
+    // Gigapub ad trigger
+    if (typeof showGiga === 'function') {
+        showGiga().then(() => {
+            db.bal += 1; db.ads += 1; save();
+            alert("Success! 1 DOGS added.");
+        });
+    } else {
+        // Fallback for testing
+        db.bal += 1; db.ads += 1; save();
+        alert("Ad simulated: 1 DOGS added.");
+    }
+}
+
+function claimDaily() {
+    if(db.lastBonus === today) return alert("Already claimed today!");
+    db.bal += 5; db.lastBonus = today; save();
+    alert("5 DOGS Daily Bonus Claimed!");
+}
+
+function luckySpin() {
+    watchVideoAd(); // Spin starts after an ad
+    let win = (Math.random() * 5).toFixed(1);
+    db.bal += parseFloat(win); save();
+    alert("You won " + win + " DOGS from Spin!");
+}
+
+function processWithdraw() {
+    let a = document.getElementById('amt').value;
+    let adr = document.getElementById('address').value;
+    if(a >= 1000 && db.bal >= a && adr.length > 5) {
+        db.bal -= a; save();
+        alert("Withdrawal request sent for " + a + " DOGS.");
+    } else {
+        alert("Minimum withdraw 1000 DOGS and valid address required.");
+    }
+}
+
+function selectM(el, m) {
     document.querySelectorAll('.method-card').forEach(c => c.classList.remove('active'));
     el.classList.add('active');
-    selectedMth = m;
 }
-
-function watchAd() {
-  if (typeof window.showGiga === 'function') {
-    window.showGiga().then(() => {
-        data.bal += 10; data.ads += 1; update();
-        alert("অভিনন্দন! ১০ টাকা আপনার ব্যালেন্সে যোগ হয়েছে।");
-    }).catch(() => alert("দুঃখিত, অ্যাড লোড করা সম্ভব হয়নি।"));
-  }
-}
-
-function claimBonus() {
-    let today = new Date().toDateString();
-    if(data.lastBonus === today) {
-        alert("আপনি আজকের বোনাস ইতোমধ্যে গ্রহণ করেছেন!");
-    } else {
-        data.bal += 10; data.lastBonus = today; update();
-        alert("সফলভাবে ১০৳ বোনাস পেলেন! 🎁");
-    }
-}
-
-function startSpin() {
-    if (typeof window.showGiga === 'function') {
-        window.showGiga().then(() => {
-            let rewards = [5, 10, 20, 50];
-            let win = rewards[Math.floor(Math.random()*rewards.length)];
-            data.bal += win; update();
-            alert("আপনি স্পিন করে " + win + "৳ জিতেছেন! 🎉");
-        });
-    }
-}
-
-function reqW() {
-    let a = parseInt(document.getElementById('amt').value);
-    let n = document.getElementById('num').value;
-    if(a >= 500 && a <= data.bal && n.length >= 11) {
-        data.bal -= a; update();
-        alert("আপনার " + a + "৳ উত্তোলনের রিকোয়েস্টটি (" + selectedMth + ") সফলভাবে জমা হয়েছে।");
-    } else {
-        alert("অনুগ্রহ করে সঠিক তথ্য দিন। সর্বনিম্ন উত্তোলন ৫০০৳।");
-    }
-}
-
-function openDev() { window.open("https://t.me/JUST_GOPAL", "_blank"); }
 </script>
+
+<div style="position:fixed; bottom:95px; width:100%; display:flex; justify-content:center; pointer-events:none;">
+    <script src="https://ad.gigapub.tech/script?id=1096"></script>
+</div>
 
 </body>
 </html>
