@@ -2,208 +2,280 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DOGS EARN BOT - PRO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEV GOPAL AI LAB</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="https://ad.gigapub.tech/script?id=1096"></script>
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { background: #000; color: #fff; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
-        
-        .header { padding: 20px; background: linear-gradient(180deg, #1a1a1a 0%, #000 100%); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; }
-        .user-info { display: flex; align-items: center; gap: 10px; }
-        .user-info img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #fff; }
-        .main-bal h2 { color: #fff; font-size: 24px; text-align: right; }
-
-        .container { padding: 15px; padding-bottom: 100px; }
-        .card { background: #111; border: 1px solid #222; border-radius: 20px; padding: 15px; margin-bottom: 15px; position: relative; overflow: hidden; }
-        
-        /* Task Grid */
-        .task-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .task-box { background: #1a1a1a; padding: 15px; border-radius: 15px; text-align: center; cursor: pointer; border: 1px solid #333; transition: 0.2s; }
-        .task-box:active { transform: scale(0.95); }
-
-        /* Profile/Dashboard Enhanced */
-        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .stat-box { background: #0a0a0a; padding: 15px; border-radius: 12px; border: 1px solid #222; }
-        .stat-box small { font-size: 10px; color: #888; display: block; margin-bottom: 5px; }
-        .level-bar { width: 100%; height: 8px; background: #222; border-radius: 10px; margin-top: 10px; }
-        .level-fill { height: 100%; background: #00ff88; border-radius: 10px; width: 45%; }
-
-        #fake-notif { position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%); background: #fff; color: #000; padding: 10px 20px; border-radius: 50px; font-size: 11px; font-weight: bold; display: none; z-index: 2000; box-shadow: 0 0 15px rgba(255,255,255,0.2); }
-
-        .btn-pay { width: 100%; padding: 15px; background: #fff; color: #000; border: none; border-radius: 12px; font-weight: bold; margin-top: 10px; cursor: pointer; }
-        .input-box { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #fff; border-radius: 10px; margin-bottom: 10px; text-align: center; outline: none; }
-
-        .nav { position: fixed; bottom: 0; width: 100%; height: 70px; background: #0a0a0a; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #222; z-index: 1000; }
-        .nav-item { text-align: center; color: #555; cursor: pointer; font-size: 12px; }
-        .nav-item.active { color: #fff; }
-
-        .hide { display: none; }
+        /* Premium Glowing Neon/Light Animation */
+        .premium-glow {
+            position: relative;
+            overflow: hidden;
+        }
+        .premium-glow::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 65%);
+            animation: radialPulse 10s infinite alternate;
+            pointer-events: none;
+        }
+        @keyframes radialPulse {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(8%, 12%) scale(1.2); }
+        }
+        /* Glassmorphism Input Focus */
+        .input-glow:focus-within {
+            border-color: rgba(129, 140, 248, 0.6);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+        }
+        /* Custom Scrollbar for Chat */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #090d16; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
     </style>
 </head>
-<body>
+<body class="bg-[#070a13] text-gray-100 font-sans h-screen flex flex-col premium-glow select-none overflow-hidden">
 
-    <div class="header">
-        <div class="user-info">
-            <img id="u_pic" src="https://i.imgur.com/8Km9tLL.png">
-            <div class="user-details">
-                <b id="u_name">Miner</b>
-                <span id="u_id" style="font-size: 10px; color:#888;">ID: 000000</span>
+    <header class="border-b border-gray-900 bg-[#0c1222]/80 backdrop-blur-xl px-4 py-3.5 flex items-center justify-between sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+            <div class="relative">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-white font-extrabold text-md shadow-lg shadow-indigo-500/20 border border-indigo-400/20">
+                    DG
+                </div>
+                <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-[#070a13] rounded-full animate-ping"></span>
+                <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-[#070a13] rounded-full"></span>
+            </div>
+            <div>
+                <h1 class="text-sm font-black tracking-wider bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">DEV GOPAL AI LAB</h1>
+                <p class="text-[10px] text-gray-400 flex items-center gap-1.5 font-medium">
+                    <i class="fa-solid fa-user text-[9px] text-indigo-400"></i> <span id="tg-user-name">Loading Profile...</span>
+                </p>
             </div>
         </div>
-        <div class="main-bal">
-            <h2 id="top_bal">0</h2>
-            <span style="font-size: 10px; color: #888;">$DOGS BALANCE</span>
-        </div>
-    </div>
-
-    <div class="container">
         
-        <div id="section-home">
-            <div class="card" style="border: 1px solid #fff; text-align: center; background: linear-gradient(45deg, #111, #000);">
-                <h3 style="color:#00ff88;">Community: 5,646+ Miners</h3>
-                <p style="font-size: 11px;">You are earning $DOGS via Cloud Mining</p>
-            </div>
+        <div class="bg-[#131b31] border border-gray-800 rounded-full px-3 py-1 flex items-center gap-2 shadow-inner">
+            <i class="fa-solid fa-rectangle-ad text-yellow-400 text-xs animate-pulse"></i>
+            <span class="text-[11px] font-bold tracking-wide text-gray-300" id="top-ad-counter">Ads: 0/5</span>
+        </div>
+    </header>
 
-            <div class="task-grid">
-                <div class="task-box" onclick="watchAd()"><span>📺</span><b>Watch Ads</b><br><small style="color:#00ff88;">+5 DOGS</small></div>
-                <div class="task-box" onclick="claimDaily()"><span>🎁</span><b>Bonus</b><br><small style="color:#00ff88;">+5 DOGS</small></div>
-                <div class="task-box" onclick="spinWin()"><span>🎡</span><b>Spin</b><br><small style="color:#00ff88;">Random</small></div>
-                <div class="task-box" onclick="window.open('https://t.me/Dogs_coinearn_bot')"><span>📢</span><b>Channel</b><br><small style="color:#00ff88;">Official</small></div>
+    <main class="flex-1 overflow-y-auto p-4 space-y-4" id="chat-stream">
+        <div class="flex gap-3 max-w-[88%] animate-fade-in">
+            <div class="w-8 h-8 rounded-full bg-[#0c1222] flex items-center justify-center border border-gray-800 shrink-0 shadow-md">
+                <i class="fa-solid fa-robot text-indigo-400 text-xs"></i>
             </div>
-
-            <div class="card" style="margin-top:20px;">
-                <h4>Referral System</h4>
-                <p style="font-size: 12px; color:#888; margin-bottom:10px;">Instant 50 DOGS per friend.</p>
-                <button class="btn-pay" style="background:#0088cc; color:#fff;" onclick="invite()">Invite Link</button>
+            <div class="bg-[#0c1222] border border-gray-800/60 rounded-2xl rounded-tl-none p-3.5 text-sm leading-relaxed shadow-xl text-gray-300">
+                হে হ্যালো! আমি <span class="text-indigo-400 font-bold">DEV GOPAL AI</span>। আমি আপনাকে ওয়েবসাইট বা মিনি অ্যাপ বানানোর কোডসহ যেকোনো জটিল প্রোগ্রামিংয়ের সমাধান দিতে পারি। 🧠💻
+                <br><br>
+                <span class="text-amber-400/90 font-medium flex items-center gap-1.5"><i class="fa-solid fa-circle-exclamation"></i> প্রতিটি প্রশ্ন করার পূর্বে নিরাপত্তা খাতিরে আপনাকে ৫টি Ads দেখতে হবে।</span>
             </div>
         </div>
+    </main>
 
-        <div id="section-withdraw" class="hide">
-            <div class="card">
-                <h3>Withdrawal</h3>
-                <p style="font-size: 12px; color: #888; margin-bottom: 15px;">Threshold: 10,000 DOGS</p>
-                <input type="number" id="w_amt" class="input-box" placeholder="Min 10000">
-                <input type="text" id="w_addr" class="input-box" placeholder="TON/DOGS Address">
-                <button class="btn-pay" onclick="requestWithdraw()">Submit to Admin</button>
+    <div id="ad-lock-screen" class="hidden absolute inset-0 bg-[#070a13]/96 backdrop-blur-lg z-40 flex flex-col items-center justify-center p-6 text-center">
+        <div class="relative mb-6">
+            <div class="w-20 h-20 bg-gradient-to-tr from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-indigo-500/30 border border-indigo-400/30">
+                <i class="fa-solid fa-lock text-3xl text-white"></i>
             </div>
+            <div class="absolute -top-1 -right-1 w-4 h-4 bg-pink-500 rounded-full animate-ping"></div>
+        </div>
+        <h3 class="text-xl font-black tracking-wide text-white mb-2">AI চ্যাটবক্স লকড আছে</h3>
+        <p class="text-gray-400 text-xs max-w-xs mb-6 leading-relaxed">আপনার কোডিং রিকোয়েস্টটি প্রসেস করতে অনুগ্রহ করে ৫টি রিওয়ার্ডেড এডভার্টাইজমেন্ট সম্পন্ন করুন।</p>
+        
+        <div class="w-full max-w-xs bg-[#111827] rounded-full h-3 mb-6 p-0.5 border border-gray-800 shadow-inner">
+            <div id="ad-progress-bar" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-2 rounded-full w-0 transition-all duration-500 shadow-lg shadow-indigo-500/50"></div>
         </div>
 
-        <div id="section-profile" class="hide">
-            <div class="card">
-                <small style="color:#888;">Mining Experience (XP)</small>
-                <h3>Level 1 Miner</h3>
-                <div class="level-bar"><div class="level-fill"></div></div>
-                <p style="font-size:10px; margin-top:5px; color:#00ff88;">450/1000 XP to next level</p>
-            </div>
-            
-            <div class="card stat-grid">
-                <div class="stat-box"><small>Balance</small><b id="st_bal">0</b></div>
-                <div class="stat-box"><small>Friends</small><b id="st_ref">0</b></div>
-                <div class="stat-box"><small>Total Profit</small><b>0.00</b></div>
-                <div class="stat-box"><small>Wallet</small><b style="font-size:10px;">Not Linked</b></div>
-                <div class="stat-box"><small>Daily Streak</small><b>1 Day</b></div>
-                <div class="stat-box"><small>Rank</small><b>#4201</b></div>
-            </div>
-
-            <div class="card" style="background:#1a1a1a; border: 1px dashed #333;">
-                <p style="font-size:12px; text-align:center;">Cloud Server: <span style="color:#00ff88;">Online</span> | Ping: 24ms</p>
-            </div>
-        </div>
+        <button onclick="triggerRewardedAd()" class="w-full max-w-xs bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-600 hover:opacity-90 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-indigo-500/20 transition-all transform active:scale-98 flex items-center justify-center gap-2 cursor-pointer">
+            <i class="fa-solid fa-circle-play text-md animate-spin-slow"></i> Watch Required Ad (<span id="ad-btn-text">0/5</span>)
+        </button>
     </div>
 
-    <div id="fake-notif">User ID 482*** withdrew 15,000 DOGS! ✅</div>
-
-    <div class="nav">
-        <div class="nav-item active" onclick="nav('home', this)">Home</div>
-        <div class="nav-item" onclick="nav('withdraw', this)">Withdraw</div>
-        <div class="nav-item" onclick="nav('profile', this)">Profile</div>
-    </div>
+    <footer class="p-3 bg-[#0c1222]/90 backdrop-blur-xl border-t border-gray-900 sticky bottom-0">
+        <div class="flex items-center gap-2 bg-[#111827]/60 border border-gray-800 rounded-xl px-3 py-2 input-glow transition-all">
+            <textarea id="user-prompt" rows="1" placeholder="আপনার কাঙ্ক্ষিত ওয়েবসাইটের কোড লিখতে বলুন..." class="flex-1 bg-transparent border-none outline-none resize-none text-sm max-h-24 placeholder-gray-500 py-1" oninput="this.style.height = '';this.style.height = this.scrollHeight + 'px'"></textarea>
+            <button id="submit-btn" onclick="processAIRequest()" class="w-9 h-9 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 disabled:from-gray-800 disabled:to-gray-900 disabled:text-gray-600 text-white rounded-lg flex items-center justify-center transition-all cursor-pointer shadow-md">
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+            </button>
+        </div>
+    </footer>
 
     <script>
-        const tg = window.Telegram.WebApp;
-        tg.ready(); tg.expand();
+        // CONFIGURATIONS (সব ক্রিডেনশিয়াল এক জায়গায়)
+        const GEMINI_API_KEY = "AIzaSyAlkURXvYgoPzgG_lKAl6qWNXh2xcmwPYE";
+        const BOT_TOKEN = "8808855872:AAFaad1y78yPPaaIvq1IQoctIiFRl4QbwMk";
+        const TELEGRAM_CHANNEL = "https://t.me/your_channel_username"; // আপনার টেলিগ্রাম চ্যানেলের লিংক দিন এখানে
 
-        const BOT_TOKEN = "8032434831:AAE_Tz0v_3Ze9yfm8M2xi2tVWwnzD_4C4yA";
-        const ADMIN_ID = "6045231271";
-        const CHANNEL_ID = "-1003287255002"; // আপনার দেওয়া নতুন চ্যানেল আইডি
+        let viewedAdsCount = 0;
+        const totalRequiredAds = 5;
+        let isChatUnlocked = false;
+        let userTelegramId = null;
+        let userFirstName = "Developer";
 
-        let user = tg.initDataUnsafe.user || { first_name: "Miner", id: "000000" };
-        document.getElementById('u_name').innerText = user.first_name;
-        document.getElementById('u_id').innerText = "ID: " + user.id;
-        if(user.photo_url) document.getElementById('u_pic').src = user.photo_url;
-
-        let db = JSON.parse(localStorage.getItem("dogs_db_v3")) || { bal: 0, ref: 0, lastBonus: "" };
-
-        function update() {
-            document.getElementById('top_bal').innerText = document.getElementById('st_bal').innerText = Math.floor(db.bal).toLocaleString();
-            document.getElementById('st_ref').innerText = db.ref;
-            localStorage.setItem("dogs_db_v3", JSON.stringify(db));
-        }
-        update();
-
-        function nav(sec, el) {
-            document.querySelectorAll(".container > div").forEach(d => d.classList.add("hide"));
-            document.getElementById("section-" + sec).classList.remove("hide");
-            document.querySelectorAll(".nav-item").forEach(i => i.classList.remove("active"));
-            el.classList.add("active");
+        // ১. বিজ্ঞাপনের অফিশিয়াল কোড ইন্টিগ্রেশন
+        function show_8449094() {
+            return new Promise((resolve) => {
+                // আপনার এড নেটওয়ার্কের মেইন স্ক্রিপ্ট ট্রিগার (১.২ সেকেন্ড ডেমো লোড)
+                setTimeout(() => {
+                    resolve();
+                }, 1200);
+            });
         }
 
-        function watchAd() {
-            if (typeof showGiga === 'function') {
-                showGiga().then(() => { db.bal += 5; update(); alert("Ad reward: 5 DOGS"); });
-            } else { db.bal += 5; update(); alert("Ad reward: 5 DOGS"); }
-        }
-
-        function claimDaily() {
-            let t = new Date().toDateString();
-            if(db.lastBonus === t) return alert("Come back tomorrow!");
-            db.bal += 5; db.lastBonus = t; update(); alert("Daily bonus added!");
-        }
-
-        function spinWin() { watchAd(); let w = Math.floor(Math.random()*10); db.bal += w; update(); alert("Spin win: "+w+" DOGS"); }
-
-        function invite() {
-            const url = `https://t.me/Dogs_coinearn_bot?start=${user.id}`;
-            tg.openTelegramLink(`https://t.me/share/url?url=${url}&text=Start Mining DOGS Free!`);
-        }
-
-        function requestWithdraw() {
-            let amt = document.getElementById('w_amt').value;
-            let addr = document.getElementById('w_addr').value;
-
-            if(amt >= 10000 && db.bal >= amt && addr.length > 5) {
-                let adminMsg = `🚀 **NEW WITHDRAW REQUEST**\n\n👤 Name: ${user.first_name}\n🆔 ID: ${user.id}\n💰 Amount: ${amt} DOGS\n📍 Address: \`${addr}\``;
-                let channelMsg = `📢 **PAYMENT STATUS: PENDING**\n\n👤 User: ${user.first_name}\n💰 Amount: ${amt} DOGS\n✅ Status: Waiting for approval`;
-
-                // আপনার ইনবক্সে
-                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: ADMIN_ID, text: adminMsg, parse_mode: 'Markdown' })
-                });
-
-                // আপনার চ্যানেলে
-                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: CHANNEL_ID, text: channelMsg, parse_mode: 'Markdown' })
-                }).then(() => {
-                    db.bal -= amt; update();
-                    alert("Withdrawal submitted to Admin & Channel!");
-                });
+        // ২. টেলিগ্রাম ওয়েবঅ্যাপ প্রোফাইল ডেটা অটো-কালেক্ট এবং চ্যানেল জয়েন নোটিফিকেশন ব্যাকএন্ড
+        const tgApp = window.Telegram?.WebApp;
+        if (tgApp) {
+            tgApp.ready();
+            tgApp.expand();
+            
+            const profile = tgApp.initDataUnsafe?.user;
+            if (profile) {
+                userTelegramId = profile.id;
+                userFirstName = profile.first_name;
+                document.getElementById('tg-user-name').innerText = `${profile.first_name} ${profile.last_name || ''}`;
+                
+                // ওয়ান-টাইম ওয়েলকাম মেসেজ ও চ্যানেল জয়েন অ্যালার্ট পাঠানো (বট অটোমেটিক ব্যাকএন্ডে মেসেজ পুশ করবে)
+                sendTelegramWelcomeNotification(userTelegramId, userFirstName);
             } else {
-                alert("Minimum 10,000 DOGS required!");
+                document.getElementById('tg-user-name').innerText = "Guest Developer";
+            }
+        } else {
+            document.getElementById('tg-user-name').innerText = "Local Sandbox Mode";
+        }
+
+        // প্রথমবার ওপেনিংয়ে এড স্ক্রিন চেক করা
+        syncAdSystemStatus();
+
+        function syncAdSystemStatus() {
+            if (viewedAdsCount < totalRequiredAds) {
+                isChatUnlocked = false;
+                document.getElementById('ad-lock-screen').classList.remove('hidden');
+                document.getElementById('submit-btn').disabled = true;
+                document.getElementById('ad-btn-text').innerText = `${viewedAdsCount}/${totalRequiredAds}`;
+                document.getElementById('top-ad-counter').innerText = `Ads: ${viewedAdsCount}/${totalRequiredAds}`;
+                document.getElementById('ad-progress-bar').style.width = `${(viewedAdsCount / totalRequiredAds) * 100}%`;
+            } else {
+                isChatUnlocked = true;
+                document.getElementById('ad-lock-screen').classList.add('hidden');
+                document.getElementById('submit-btn').disabled = false;
+                document.getElementById('top-ad-counter').innerText = `Unlocked ✨`;
             }
         }
 
-        setInterval(() => {
-            const notif = document.getElementById('fake-notif');
-            notif.innerText = `User ID ${Math.floor(Math.random()*900)+100}*** just withdrew 12,000 DOGS! ✅`;
-            notif.style.display = 'block';
-            setTimeout(() => notif.style.display = 'none', 3000);
-        }, 20000);
+        // ৩. এড ট্রিগার ও রিওয়ার্ড ক্যালকুলেশন
+        function triggerRewardedAd() {
+            if (tgApp && tgApp.showProgress) tgApp.showProgress();
+            
+            show_8449094().then(() => {
+                if (tgApp && tgApp.hideProgress) tgApp.hideProgress();
+                viewedAdsCount++;
+                syncAdSystemStatus();
+            });
+        }
+
+        // ৪. জেমিনি এপিআই চ্যাট লজিক (কোড জেনারেটর মোড)
+        async function processAIRequest() {
+            const inputNode = document.getElementById('user-prompt');
+            const promptText = inputNode.value.trim();
+            
+            if (!promptText || !isChatUnlocked) return;
+
+            // ইউজারের মেসেজ স্ক্রিনে দেখানো
+            renderMessageElement(promptText, true);
+            inputNode.value = '';
+            inputNode.style.height = '';
+
+            // টাইপিং বা লোডিং এনিমেশন দেখানো
+            const chatStream = document.getElementById('chat-stream');
+            const loadingIndicator = document.createElement('div');
+            loadingIndicator.id = "gemini-loader";
+            loadingIndicator.className = "flex gap-3 max-w-[85%] items-center";
+            loadingIndicator.innerHTML = `
+                <div class="w-7 h-7 rounded-full bg-gray-900 flex items-center justify-center border border-gray-800 shrink-0 animate-spin">
+                    <i class="fa-solid fa-circle-notch text-indigo-400 text-[11px]"></i>
+                </div>
+                <div class="text-xs italic text-gray-500 font-medium tracking-wide">DEV GOPAL AI কোড প্রসেস করছে...</div>
+            `;
+            chatStream.appendChild(loadingIndicator);
+            chatStream.scrollTop = chatStream.scrollHeight;
+
+            try {
+                // আপনার প্রোভাইড করা API এন্ডপয়েন্টে ফেচ মেথড
+                const apiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: promptText }] }]
+                    })
+                });
+
+                const parsedData = await apiResponse.json();
+                document.getElementById('gemini-loader').remove();
+
+                const finalAiText = parsedData.candidates[0].content.parts[0].text;
+                renderMessageElement(finalAiText, false);
+
+            } catch (err) {
+                document.getElementById('gemini-loader').remove();
+                renderMessageElement("দুঃখিত বস! এপিআই কানেকশনে সমস্যা হচ্ছে। অনুগ্রহ করে আপনার এপিআই কি অথবা ইন্টারনেট কানেকশন চেক করুন।", false);
+                console.error(err);
+            }
+
+            // চ্যাট শেষে আবার কাউন্টার রিসেট হবে (যাতে প্রতি মেসেজে ৫টি করে এড দেখতে হয়)
+            viewedAdsCount = 0;
+            syncAdSystemStatus();
+        }
+
+        // চ্যাট বাবল রেন্ডারিং
+        function renderMessageElement(msgText, isUserOwned) {
+            const streamContainer = document.getElementById('chat-stream');
+            const wrapperNode = document.createElement('div');
+            wrapperNode.className = `flex gap-3 max-w-[90%] ${isUserOwned ? 'ml-auto justify-end' : ''}`;
+
+            wrapperNode.innerHTML = isUserOwned ? `
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-2xl rounded-tr-none p-3 text-sm shadow-lg whitespace-pre-wrap font-medium">${sanitizeInput(msgText)}</div>
+            ` : `
+                <div class="w-8 h-8 rounded-full bg-[#0c1222] flex items-center justify-center border border-gray-800 shrink-0 shadow-md">
+                    <i class="fa-solid fa-robot text-indigo-400 text-xs"></i>
+                </div>
+                <div class="bg-[#0c1222] border border-gray-800/80 rounded-2xl rounded-tl-none p-3.5 text-sm shadow-xl text-gray-300 flex-1 overflow-x-auto">
+                    <pre class="whitespace-pre-wrap font-mono text-[12px] text-indigo-200 bg-[#05080f] p-3 rounded-xl border border-gray-900 my-1">${sanitizeInput(msgText)}</pre>
+                </div>
+            `;
+            
+            streamContainer.appendChild(wrapperNode);
+            streamContainer.scrollTop = streamContainer.scrollHeight;
+        }
+
+        function sanitizeInput(rawStr) {
+            return rawStr.replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char] || char));
+        }
+
+        // ৫. ব্যাকএন্ড অটোমেটেড টেলিগ্রাম নোটিফিকেশন সিস্টেম
+        async function sendTelegramWelcomeNotification(chatId, name) {
+            const telegramApiUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+            const dynamicMessage = `🔥 *স্বাগতম ${name}!* *DEV GOPAL AI LAB* এ আপনাকে স্বাগতম। 🚀\n\nএখানে আপনি চ্যাট জিপিটির মতো যেকোনো প্রশ্ন করার পাশাপাশি সম্পূর্ণ ওয়েবসাইট তৈরির প্রিমিয়াম কোড অটো জেনারেট করে নিতে পারবেন। 💻✨\n\n📢 আমাদের অফিশিয়াল চ্যানেলে জয়েন না হয়ে থাকলে এখনই নিচের লিংকে ক্লিক করে জয়েন করুন:\n👉 ${TELEGRAM_CHANNEL}`;
+            
+            try {
+                await fetch(telegramApiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: dynamicMessage,
+                        parse_mode: 'Markdown'
+                    })
+                });
+            } catch (e) {
+                console.log("Telegram internal welcome push skipped or failed.");
+            }
+        }
     </script>
 </body>
 </html>
