@@ -9,15 +9,15 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
+    <script src='//libtl.com/sdk.js' data-zone='10282897' data-sdk='show_10282897'></script>
+
     <style>
-        /* Gemini Smooth Futuristic Gradient & Ambient Glow */
         body {
             background-color: #0d0e12;
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(31, 41, 234, 0.05) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(192, 38, 211, 0.05) 0%, transparent 40%);
         }
-        /* Gemini Aura Pulse Animation for Icons */
         .gemini-aura {
             animation: auraPulse 4s infinite alternate;
         }
@@ -25,12 +25,10 @@
             0% { box-shadow: 0 0 15px rgba(99, 102, 241, 0.2); }
             100% { box-shadow: 0 0 25px rgba(168, 85, 247, 0.4); }
         }
-        /* Custom Clean Scrollbar */
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #2a2b36; border-radius: 99px; }
         
-        /* Rendered Code Blocks UI Style */
         pre {
             background-color: #16171d !important;
             border: 1px solid #23242e;
@@ -45,108 +43,158 @@
 </head>
 <body class="text-[#e3e3e3] font-sans h-screen flex flex-col overflow-hidden antialiased">
 
-    <header class="bg-[#0d0e12]/90 backdrop-blur-md px-6 py-4 flex items-center justify-between border-b border-[#202124]">
-        <div class="flex items-center gap-3">
-            <div class="relative flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-tr from-[#1a73e8] via-[#7b1fa2] to-[#e8710a] gemini-aura">
-                <i class="fa-solid fa-sparkles text-white text-sm"></i>
+    <div id="plan-screen" class="absolute inset-0 bg-[#0d0e12] z-50 flex flex-col items-center justify-center p-6">
+        <div class="mb-8 text-center">
+            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-white text-xl font-bold gemini-aura mb-4">
+                DG
             </div>
-            <div>
-                <h1 class="text-md font-semibold tracking-tight text-white">DEV GOPAL AI LAB</h1>
-                <p class="text-[11px] text-gray-400 flex items-center gap-1">
-                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> 
-                    <span id="tg-profile-name">Gemini Active</span>
-                </p>
-            </div>
+            <h2 class="text-2xl font-bold text-white tracking-wide">DEV GOPAL AI LAB</h2>
+            <p class="text-xs text-gray-400 mt-1">অনুগ্রহ করে আপনার ব্যবহারের প্ল্যানটি সিলেক্ট করুন</p>
         </div>
 
-        <div class="flex items-center gap-3">
-            <div class="bg-[#1e1f20] border border-[#303134] rounded-full px-3 py-1.5 text-xs text-gray-300 font-medium flex items-center gap-2">
-                <i class="fa-solid fa-bolt text-yellow-400"></i>
-                <span id="top-status-text">Ads: 0/5</span>
-            </div>
-        </div>
-    </header>
+        <div class="w-full max-w-xs space-y-4">
+            <button onclick="selectFreePlan()" class="w-full text-left bg-[#1e1f20] border border-[#303134] p-4 rounded-2xl hover:border-indigo-500 transition-all active:scale-98 flex items-center justify-between group cursor-pointer">
+                <div>
+                    <h4 class="text-md font-bold text-white flex items-center gap-2">ফ্রি প্ল্যান <span class="text-[10px] bg-indigo-500/20 text-indigo-400 px-2 py-0.5 rounded-full">Ads Supported</span></h4>
+                    <p class="text-xs text-gray-400 mt-1">প্রতিটি চ্যাটের পূর্বে ৫টি বিজ্ঞাপন দেখতে হবে।</p>
+                </div>
+                <i class="fa-solid fa-chevron-right text-gray-500 group-hover:text-white transition-all"></i>
+            </button>
 
-    <main class="flex-1 overflow-y-auto px-6 py-6 space-y-6 max-w-3xl mx-auto w-full" id="chat-viewport">
-        <div class="space-y-2 max-w-xl animate-fade-in py-4">
-            <h2 class="text-2xl md:text-3xl font-medium bg-gradient-to-r from-[#4285f4] via-[#9b51e0] to-[#e28743] bg-clip-text text-transparent">
-                হ্যালো, আমি DEV GOPAL AI
-            </h2>
-            <p class="text-gray-400 text-sm leading-relaxed">
-                আপনার মিনি অ্যাপ বা ওয়েবসাইটের জন্য যেকোনো প্রফেশনাল কোড লিখে দিতে প্রস্তুত। শুরু করতে নিচে বিজ্ঞাপন দেখে চ্যাটবক্সটি আনলক করুন।
-            </p>
-        </div>
-    </main>
-
-    <div id="ad-lock-panel" class="hidden absolute inset-0 bg-[#0d0e12]/98 backdrop-blur-xl z-50 flex flex-col items-center justify-center p-6 text-center">
-        <div class="w-16 h-16 rounded-full bg-[#1e1f20] border border-[#303134] flex items-center justify-center mb-6 shadow-xl">
-            <i class="fa-solid fa-layer-group text-xl text-indigo-400 animate-pulse"></i>
-        </div>
-        <h3 class="text-xl font-medium text-white mb-2">সার্ভার সিকিউরিটি ভেরিফিকেশন</h3>
-        <p class="text-gray-400 text-xs max-w-xs mb-6 leading-relaxed">AI রেসপন্স জেনারেট করার জন্য আপনাকে ৫টি শর্ট স্পন্সরড বিজ্ঞাপন দেখতে হবে।</p>
-        
-        <div class="w-64 bg-[#1e1f20] rounded-full h-1.5 mb-6 overflow-hidden border border-[#303134]">
-            <div id="ad-meter" class="bg-gradient-to-r from-[#4285f4] to-[#9b51e0] h-1.5 w-0 transition-all duration-500"></div>
-        </div>
-
-        <button onclick="watchRewardedAd()" class="w-64 bg-white hover:bg-gray-100 text-black font-semibold py-3 px-6 rounded-full shadow-lg transition-all transform active:scale-95 flex items-center justify-center gap-2 cursor-pointer text-sm">
-            <i class="fa-solid fa-play-circle text-md"></i> বিজ্ঞাপন দেখুন (<span id="ad-btn-indicator">0/5</span>)
-        </button>
-    </div>
-
-    <footer class="p-4 bg-[#0d0e12] max-w-3xl mx-auto w-full sticky bottom-0">
-        <div class="relative flex items-end gap-2 bg-[#1e1f20] border border-[#303134] rounded-3xl px-4 py-3 focus-within:border-[#4285f4] transition-all">
-            <textarea id="input-field" rows="1" placeholder="এখানে কোড লিখতে বলুন বা প্রশ্ন করুন..." class="flex-1 bg-transparent border-none outline-none resize-none text-sm text-gray-200 placeholder-gray-500 max-h-32 py-1 leading-relaxed" oninput="this.style.height = '';this.style.height = this.scrollHeight + 'px'"></textarea>
-            
-            <button id="action-btn" onclick="submitUserPrompt()" class="w-10 h-10 bg-[#2d2f31] hover:bg-[#3c4043] disabled:opacity-40 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-md shrink-0">
-                <i class="fa-solid fa-arrow-up text-sm"></i>
+            <button onclick="selectProPlan()" class="w-full text-left bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 p-4 rounded-2xl hover:border-amber-500 transition-all active:scale-98 flex items-center justify-between group cursor-pointer">
+                <div>
+                    <h4 class="text-md font-bold text-amber-400 flex items-center gap-2">প্রো প্ল্যান <span class="text-[10px] bg-amber-500 text-black font-black px-2 py-0.5 rounded-full">PRO</span></h4>
+                    <p class="text-xs text-gray-400 mt-1">কোনো বিজ্ঞাপন ছাড়াই আনলিমিটেড কোডিং ও চ্যাট।</p>
+                </div>
+                <i class="fa-solid fa-crown text-amber-500 group-hover:scale-110 transition-all"></i>
             </button>
         </div>
-        <p class="text-[10px] text-center text-gray-500 mt-2">DEV GOPAL AI LAB v2.0 • Powered by Gemini Flash</p>
-    </footer>
+        <p class="text-[10px] text-gray-600 mt-12">Developer Gopal • AI Lab Version 2.1</p>
+    </div>
+
+    <div id="main-app" class="hidden h-screen flex flex-col justify-between">
+        
+        <header class="bg-[#0d0e12]/90 backdrop-blur-md px-6 py-4 flex items-center justify-between border-b border-[#202124]">
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <img id="tg-user-avatar" src="https://www.w3schools.com/howto/img_avatar.png" class="w-9 h-9 rounded-full object-cover border border-[#303134]" alt="User Avatar">
+                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-[#0d0e12] rounded-full"></span>
+                </div>
+                <div>
+                    <h1 id="tg-profile-name" class="text-sm font-semibold tracking-tight text-white">Loading Profile...</h1>
+                    <p class="text-[11px] text-gray-400 flex items-center gap-1">
+                        <span class="text-indigo-400 font-medium" id="user-plan-badge">ফ্রি প্ল্যান</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <div class="bg-[#1e1f20] border border-[#303134] rounded-full px-3 py-1.5 text-xs text-gray-300 font-medium flex items-center gap-2">
+                    <i class="fa-solid fa-bolt text-yellow-400"></i>
+                    <span id="top-status-text">Ads: 0/5</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto px-6 py-6 space-y-6 max-w-3xl mx-auto w-full" id="chat-viewport">
+            <div class="space-y-2 max-w-xl animate-fade-in py-4">
+                <h2 class="text-2xl font-medium bg-gradient-to-r from-[#4285f4] via-[#9b51e0] to-[#e28743] bg-clip-text text-transparent">
+                    হ্যালো, আমি DEV GOPAL AI
+                </h2>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    আপনার মিনি অ্যাপ বা ওয়েবসাইটের জন্য যেকোনো প্রফেশনাল কোড লিখে দিতে প্রস্তুত। শুরু করতে নিচে বিজ্ঞাপন দেখে চ্যাটবক্সটি আনলক করুন।
+                </p>
+            </div>
+        </main>
+
+        <div id="ad-lock-panel" class="hidden absolute inset-0 bg-[#0d0e12]/98 backdrop-blur-xl z-40 flex flex-col items-center justify-center p-6 text-center">
+            <div class="w-16 h-16 rounded-full bg-[#1e1f20] border border-[#303134] flex items-center justify-center mb-6 shadow-xl">
+                <i class="fa-solid fa-layer-group text-xl text-indigo-400 animate-pulse"></i>
+            </div>
+            <h3 class="text-xl font-medium text-white mb-2">সার্ভার সিকিউরিটি ভেরিফিকেশন</h3>
+            <p class="text-gray-400 text-xs max-w-xs mb-6 leading-relaxed">AI রেসপন্স জেনারেট করার জন্য আপনাকে ৫টি শর্ট স্পন্সরড বিজ্ঞাপন দেখতে হবে।</p>
+            
+            <div class="w-64 bg-[#1e1f20] rounded-full h-1.5 mb-6 overflow-hidden border border-[#303134]">
+                <div id="ad-meter" class="bg-gradient-to-r from-[#4285f4] to-[#9b51e0] h-1.5 w-0 transition-all duration-500"></div>
+            </div>
+
+            <button onclick="watchRewardedAd()" class="w-64 bg-white hover:bg-gray-100 text-black font-semibold py-3 px-6 rounded-full shadow-lg transition-all transform active:scale-95 flex items-center justify-center gap-2 cursor-pointer text-sm">
+                <i class="fa-solid fa-play-circle text-md"></i> বিজ্ঞাপন দেখুন (<span id="ad-btn-indicator">0/5</span>)
+            </button>
+        </div>
+
+        <footer class="p-4 bg-[#0d0e12] max-w-3xl mx-auto w-full sticky bottom-0">
+            <div class="relative flex items-end gap-2 bg-[#1e1f20] border border-[#303134] rounded-3xl px-4 py-3 focus-within:border-[#4285f4] transition-all">
+                <textarea id="input-field" rows="1" placeholder="এখানে কোড লিখতে বলুন বা প্রশ্ন করুন..." class="flex-1 bg-transparent border-none outline-none resize-none text-sm text-gray-200 placeholder-gray-500 max-h-32 py-1 leading-relaxed" oninput="this.style.height = '';this.style.height = this.scrollHeight + 'px'"></textarea>
+                
+                <button id="action-btn" onclick="submitUserPrompt()" class="w-10 h-10 bg-[#2d2f31] hover:bg-[#3c4043] disabled:opacity-40 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-md shrink-0">
+                    <i class="fa-solid fa-arrow-up text-sm"></i>
+                </button>
+            </div>
+            <p class="text-[10px] text-center text-gray-500 mt-2">DEV GOPAL AI LAB v2.1 • Powered by Gemini Flash</p>
+        </footer>
+    </div>
 
     <script>
-        // credentials configurations
         const GEMINI_API_KEY = "AIzaSyAlkURXvYgoPzgG_lKAl6qWNXh2xcmwPYE";
         const BOT_TOKEN = "8808855872:AAFaad1y78yPPaaIvq1IQoctIiFRl4QbwMk";
-        const TELEGRAM_CH = "https://t.me/your_channel_username"; // আপনার চ্যানেল ইউজারনেম দিন
+        const TELEGRAM_CH = "https://t.me/DEV_GOPAL"; // আপনার অফিশিয়াল চ্যানেল লিংক আপডেটেড
 
         let adsWatched = 0;
         const adsLimit = 5;
         let isSystemReady = false;
-        let userChatId = null;
+        let selectedPlan = "free";
 
-        // ১. অ্যাড লোড ও এরর হ্যান্ডেলিং ফাংশন
-        function show_8449094() {
-            return new Promise((resolve) => {
-                // যদি আপনার আসল অ্যাড নেটওয়ার্কের স্ক্রিপ্ট ফাইল বা ফাংশন ব্রাউজারে থাকে, তবে সেটি কল হবে
-                if (typeof window.show_rewarded_ad === "function") {
-                    window.show_rewarded_ad().then(() => resolve(true)).catch(() => resolve(true));
-                } else {
-                    // স্ক্রিপ্ট লোড না হলে অটো ব্যাকআপ ২ সেকেন্ড লোডার দেখাবে যাতে অ্যাপ আটকে না থাকে
-                    setTimeout(() => { resolve(true); }, 2000);
-                }
-            });
+        // ১. প্ল্যান সিলেকশন অপশনস
+        function selectFreePlan() {
+            selectedPlan = "free";
+            document.getElementById('plan-screen').classList.add('hidden');
+            document.getElementById('main-app').classList.remove('hidden');
+            document.getElementById('user-plan-badge').innerText = "ফ্রি প্ল্যান";
+            updateAdUIPanel();
         }
 
-        // ২. টেলিগ্রাম মেম্বার ডিটেকশন ও ডাটা ফেচিং 
-        const tg = window.Telegram?.WebApp;
-        if (tg) {
-            tg.ready();
-            tg.expand();
-            
-            const client = tg.initDataUnsafe?.user;
-            if (client) {
-                userChatId = client.id;
-                document.getElementById('tg-profile-name').innerText = `${client.first_name}`;
-                triggerBotWelcomePush(client.id, client.first_name);
+        function selectProPlan() {
+            // প্রফেশনাল অ্যালার্ট ট্রিগার
+            if (window.Telegram?.WebApp) {
+                window.Telegram.WebApp.showAlert("Premium Pro System:\nদুঃখিত বস, প্রো প্ল্যানের কাজ বর্তমানে চলমান আছে। খুব শীঘ্রই এটি চালু হবে। আপাতত ফ্রি প্ল্যান ব্যবহার করুন।");
+            } else {
+                alert("Premium Pro System:\nদুঃখিত বস, প্রো প্ল্যানের কাজ বর্তমানে চলমান আছে। খুব শীঘ্রই এটি চালু হবে। আপাতত ফ্রি প্ল্যান ব্যবহার করুন।");
             }
         }
 
-        updateAdUIPanel();
+        // ২. Monetag এর অফিশিয়াল SDK কলব্যাক হ্যান্ডেলার ফিক্স
+        function watchRewardedAd() {
+            if (window.Telegram?.WebApp && window.Telegram.WebApp.showProgress) {
+                window.Telegram.WebApp.showProgress();
+            }
+            
+            // Monetag স্ক্রিপ্ট চেক
+            if (typeof show_10282897 === 'function') {
+                show_10282897().then(() => {
+                    adCompletedSuccess();
+                }).catch((err) => {
+                    console.log("Ad Error or Skips:", err);
+                    adCompletedSuccess(); // ব্যাকআপ হিসেবে কাউন্ট সচল রাখতে
+                });
+            } else {
+                // কোনো কারণে SDK ব্লক থাকলে সেফটি ফলব্যাক লোডার
+                setTimeout(() => {
+                    adCompletedSuccess();
+                }, 2000);
+            }
+        }
+
+        function adCompletedSuccess() {
+            if (window.Telegram?.WebApp && window.Telegram.WebApp.hideProgress) {
+                window.Telegram.WebApp.hideProgress();
+            }
+            adsWatched++;
+            updateAdUIPanel();
+        }
 
         function updateAdUIPanel() {
-            if (adsWatched < adsLimit) {
+            if (selectedPlan === "free" && adsWatched < adsLimit) {
                 isSystemReady = false;
                 document.getElementById('ad-lock-panel').classList.remove('hidden');
                 document.getElementById('action-btn').disabled = true;
@@ -161,30 +209,53 @@
             }
         }
 
-        // ৩. অ্যাড দেখা শেষ হলে রিওয়ার্ড দেওয়ার লজিক
-        function watchRewardedAd() {
-            if (tg && tg.showProgress) tg.showProgress();
+        // ৩. টেলিগ্রাম ডাটা ও রিয়েল প্রোফাইল পিকচার কালেকশন
+        const tg = window.Telegram?.WebApp;
+        if (tg) {
+            tg.ready();
+            tg.expand();
             
-            show_8449094().then(() => {
-                if (tg && tg.hideProgress) tg.hideProgress();
-                adsWatched++;
-                updateAdUIPanel();
-            });
+            const client = tg.initDataUnsafe?.user;
+            if (client) {
+                document.getElementById('tg-profile-name').innerText = `${client.first_name} ${client.last_name || ''}`;
+                
+                // টেলিগ্রাম বট এপিআই দিয়ে ইউজারের অরিজিনাল প্রোফাইল পিকচার ডাউনলোড মেথড
+                fetchUserProfilePhoto(client.id);
+                
+                // বট থেকে স্বয়ংক্রিয় ওয়েলকাম নোটিফিকেশন পুশ
+                triggerBotWelcomePush(client.id, client.first_name);
+            }
+        } else {
+            document.getElementById('tg-profile-name').innerText = "Developer Gopal (Test Mode)";
         }
 
-        // ৪. জেমিনি চ্যাট এপিআই এক্সিকিউশন ও রিপ্লাই সিস্টেম
+        async function fetchUserProfilePhoto(userId) {
+            try {
+                const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getUserProfilePhotos?user_id=${userId}&limit=1`);
+                const data = await res.json();
+                if (data.ok && data.result.total_count > 0) {
+                    const fileId = data.result.photos[0][0].file_id;
+                    const fileRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getFile?file_id=${fileId}`);
+                    const fileData = await fileRes.json();
+                    if (fileData.ok) {
+                        const filePath = fileData.result.file_path;
+                        document.getElementById('tg-user-avatar').src = `https://api.telegram.org/file/bot${BOT_TOKEN}/${filePath}`;
+                    }
+                }
+            } catch (e) { console.log("Avatar Loading Issue bypassed."); }
+        }
+
+        // ৪. জেমিনি এপিআই ফিক্সড রিকোয়েস্ট অবজেক্ট ও চ্যাট রেসপন্স
         async function submitUserPrompt() {
             const textarea = document.getElementById('input-field');
             const userMsg = textarea.value.trim();
 
             if (!userMsg || !isSystemReady) return;
 
-            // ইউজারের মেসেজ UI-তে পুশ করা
             renderBubble(userMsg, true);
             textarea.value = '';
             textarea.style.height = '';
 
-            // জেমিনির মতো গ্লোয়িং পালস টাইপিং লোডার তৈরি
             const viewport = document.getElementById('chat-viewport');
             const loader = document.createElement('div');
             loader.id = "gemini-pulse-loader";
@@ -200,8 +271,8 @@
             viewport.scrollTop = viewport.scrollHeight;
 
             try {
-                // এপিআই ফেচ রিকোয়েস্ট উইথ প্রোপার বডি স্ট্রাকচার
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`, {
+                // জেমিনি এপিআই এন্ডপয়েন্টে কন্টেন্ট স্ট্রাকচার ফিক্স করা হয়েছে 
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -212,33 +283,36 @@
                 const data = await res.json();
                 document.getElementById('gemini-pulse-loader').remove();
 
-                // রেসপন্স ডাটা এক্সট্রাক্ট করে Marked লাইব্রেরি দিয়ে কোড ব্লক হাইলাইট করা
-                const aiReplyText = data.candidates[0].content.parts[0].text;
-                renderBubble(aiReplyText, false);
+                if(data.candidates && data.candidates[0].content.parts[0].text) {
+                    const aiReplyText = data.candidates[0].content.parts[0].text;
+                    renderBubble(aiReplyText, false);
+                } else {
+                    renderBubble("দুঃখিত বস, এপিআই কি কোটা ওভার বা সমস্যা হয়েছে। অনুগ্রহ করে কি-টি পুনরায় চেক করুন।", false);
+                }
 
             } catch (error) {
-                document.getElementById('gemini-pulse-loader').remove();
-                renderBubble("সার্ভার রেসপন্স করতে পারছে না। অনুগ্রহ করে এপিআই কি অথবা ইন্টারনেট চেক করুন।", false);
+                if(document.getElementById('gemini-pulse-loader')) document.getElementById('gemini-pulse-loader').remove();
+                renderBubble("কানেকশন ইরর! সার্ভার রেসপন্স করছে না। দয়া করে আবার চেষ্টা করুন।", false);
                 console.error(error);
             }
 
-            // রিকোয়েস্ট শেষ, পুনরায় ৫ বার এড সিস্টেম চালু হবে
-            adsWatched = 0;
-            updateAdUIPanel();
+            // ফ্রি প্ল্যানে চ্যাট শেষে পুনরায় কাউন্টার রিসেট হবে
+            if (selectedPlan === "free") {
+                adsWatched = 0;
+                updateAdUIPanel();
+            }
         }
 
-        // চ্যাট বক্স বাবল জেনারেটর (জেমিনি স্টাইল)
         function renderBubble(content, isUser) {
             const viewport = document.getElementById('chat-viewport');
             const bubbleRow = document.createElement('div');
-            bubbleRow.className = `flex gap-4 max-w-3xl ${isUser ? 'justify-end' : 'items-start'}`;
+            bubbleRow.className = `flex gap-4 max-w-3xl ${isUser ? 'justify-end ml-auto' : 'items-start'}`;
 
             if (isUser) {
                 bubbleRow.innerHTML = `
                     <div class="bg-[#2d2f31] text-gray-100 rounded-2xl px-4 py-2.5 text-sm max-w-[85%] whitespace-pre-wrap">${escapeHTML(content)}</div>
                 `;
             } else {
-                // Marked.js ব্যবহার করে কোড ব্লককে প্রিমিয়াম আউটপুট দেওয়া
                 const htmlOutput = marked.parse(content);
                 bubbleRow.innerHTML = `
                     <div class="w-7 h-7 rounded-full bg-[#1e1f20] border border-[#303134] shrink-0 flex items-center justify-center mt-1">
@@ -256,7 +330,7 @@
             return str.replace(/[&<>'"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[c] || c));
         }
 
-        // ৫. ব্যাকগ্রাউন্ড টেলিগ্রাম নোটিফিকেশন পুশ
+        // ৫. অফিশিয়াল চ্যানেল লিংকে মেম্বার পুশ মেসেজ
         async function triggerBotWelcomePush(chatId, firstName) {
             const pushUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
             const pushText = `🔥 *স্বাগতম ${firstName}!* *DEV GOPAL AI LAB* এ আপনাকে স্বাগতম। 🚀\n\nএখানে আপনি চ্যাট জিপিটির মতো যেকোনো প্রশ্ন করার পাশাপাশি সম্পূর্ণ ওয়েবসাইট তৈরির প্রিমিয়াম কোড অটো জেনারেট করে নিতে পারবেন। 💻✨\n\n📢 আমাদের অফিশিয়াল চ্যানেলে জয়েন না হয়ে থাকলে এখনই নিচের লিংকে ক্লিক করে জয়েন করুন:\n👉 ${TELEGRAM_CH}`;
@@ -267,7 +341,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ chat_id: chatId, text: pushText, parse_mode: 'Markdown' })
                 });
-            } catch (err) { console.log("Bot trigger update skipped."); }
+            } catch (err) { console.log("Bot message push bypassed."); }
         }
     </script>
 </body>
